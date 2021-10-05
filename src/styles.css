@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/normalize.css/normalize.css";
+@import "../node_modules/bulma/css/bulma.css";
+
+td,
+tr {
+  white-space: nowrap;
+}
+
+.card {
+  height: 100% !important;
+}
