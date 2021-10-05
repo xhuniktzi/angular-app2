@@ -7,7 +7,7 @@
       aria-label="navigation"
     >
       <div class="navbar-brand">
-        <a href="#" class="navbar-item">Inicio</a>
+        <a [routerLink]="['/']" class="navbar-item">Inicio</a>
         <a
           role="button"
           class="navbar-burger"
@@ -25,28 +25,24 @@
         <div class="navbar-end">
           <a
             [routerLink]="['/products']"
-            routerLinkActive="active"
             class="navbar-item"
             (click)="toggleMenu()"
             >Productos</a
           >
           <a
-            [routerLink]="['/products']"
-            routerLinkActive="active"
+            [routerLink]="['/clients']"
             class="navbar-item"
             (click)="toggleMenu()"
             >Clientes</a
           >
           <a
-            [routerLink]="['/products']"
-            routerLinkActive="active"
+            [routerLink]="['/invoices']"
             class="navbar-item"
             (click)="toggleMenu()"
             >Facturas</a
           >
           <a
-            [routerLink]="['/products']"
-            routerLinkActive="active"
+            [routerLink]="['/reports']"
             class="navbar-item"
             (click)="toggleMenu()"
             >Reportes</a

@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ProductsModule } from './products/products.module';
 import { RouterModule } from '@angular/router';
 import { ProductListComponent } from './products/product-list/product-list.component';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,9 @@ import { ProductListComponent } from './products/product-list/product-list.compo
     ProductsModule,
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
+      { path: 'products/detail/:code', component: ProductDetailComponent },
+      { path: '', redirectTo: '/', pathMatch: 'full' },
+      { path: '**', redirectTo: '/', pathMatch: 'full' },
     ]),
   ],
   bootstrap: [AppComponent],

@@ -3,7 +3,6 @@ import { IProduct } from '../product';
 import { ProductsApiService } from '../products-api.service';
 
 @Component({
-  selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
 })

@@ -30,17 +30,28 @@
         <td>{{ p.code }}</td>
         <td>{{ p.name }}</td>
         <td>{{ p.description }}</td>
-        <td>{{ p.price }}</td>
-        <td>{{ p.min_Quantity }}</td>
-        <td></td>
+        <td class="has-text-right">
+          {{ p.price | currency: "GTQ":"symbol-narrow":"1.2-2" }}
+        </td>
+        <td class="has-text-right">{{ p.min_Quantity | number }}</td>
+        <td>
+          <a
+            [routerLink]="['/products/detail', p.code]"
+            class="button is-small is-link is-rounded"
+            >Ver detalles</a
+          >
+          <a
+            [routerLink]="['/products/edit', p.code]"
+            class="button is-small is-info is-rounded"
+            >Editar</a
+          >
+          <a
+            [routerLink]="['/products/delete', p.code]"
+            class="button is-small is-danger is-rounded"
+            >Eliminar</a
+          >
+        </td>
       </tr>
-
-      <!-- @Html.ActionLink("Editar", "Edit", "Product", new { code = item.Code
-          }, new { @class="button is-small is-link is-rounded"})
-          @Html.ActionLink("Ver detalles", "Details", "Product", new { code =
-          item.Code }, new { @class = "button is-small is-info is-rounded" })
-          @Html.ActionLink("Borrar", "Delete", "Product", new { code = item.Code
-          }, new { @class = "button is-small is-danger is-rounded" }) -->
     </tbody>
   </table>
 </div>

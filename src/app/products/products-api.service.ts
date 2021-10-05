@@ -8,15 +8,22 @@ import { IProduct } from './product';
   providedIn: 'root',
 })
 export class ProductsApiService {
-  private url = 'http://localhost:5000/products';
+  url = 'http://localhost:5000/products';
 
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(this.url).pipe(
-      tap((data) => data),
-      catchError(this.handleError)
-    );
+    const url = 'http://localhost:5000/products';
+    return this.http
+      .get<IProduct[]>(url)
+      .pipe((data) => data, catchError(this.handleError));
+  }
+
+  findProductByCode(code: string | null): Observable<IProduct | undefined> {
+    const url = `http://localhost:5000/products/${code}`;
+    return this.http
+      .get<IProduct>(url)
+      .pipe((data) => data, catchError(this.handleError));
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {
