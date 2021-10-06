@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from '../product';
-import { ProductsApiService } from '../products-api.service';
+import { IProduct } from '../../common/product';
+import { ProductsApiService } from '../../data/products-api.service';
 
 @Component({
   templateUrl: './product-list.component.html',

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from '../product';
-import { ProductsApiService } from '../products-api.service';
+import { NgForm } from '@angular/forms';
+import { IProduct } from '../../common/product';
+import { ProductsApiService } from '../../data/products-api.service';
 
 @Component({
   selector: 'app-product-create',
@@ -20,4 +21,7 @@ export class ProductCreateComponent implements OnInit {
   constructor(private productsApiService: ProductsApiService) {}
 
   ngOnInit(): void {}
+  onSubmit(form: NgForm): void {
+    // this.productsApiService.saveProduct(this.product);
+  }
 }

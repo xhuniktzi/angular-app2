@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-import { IProduct } from './product';
+import { catchError } from 'rxjs/operators';
+import { IProduct } from '../common/product';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +24,11 @@ export class ProductsApiService {
     return this.http
       .get<IProduct>(url)
       .pipe((data) => data, catchError(this.handleError));
+  }
+
+  saveProduct(product: IProduct): Observable<any> {
+    const url = 'http://localhost:5000/products';
+    return this.http.post(url, product);
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {

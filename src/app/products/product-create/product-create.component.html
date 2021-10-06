@@ -1,6 +1,6 @@
 <h1 class="title has-text-centered">Crear nuevo Producto</h1>
 
-<form class="columns is-centered" #form="ngForm">
+<form class="columns is-centered" #form="ngForm" (ngSubmit)="onSubmit(form)">
   <div class="card column">
     <div class="card-content">
       <div class="field is-horizontal">
@@ -16,7 +16,20 @@
                 name="code"
                 class="input is-info"
                 [(ngModel)]="product.code"
+                #codeField="ngModel"
+                required
               />
+
+              <div
+                *ngIf="
+                  codeField.invalid && (codeField.dirty || codeField.touched)
+                "
+                class="help is-danger"
+              >
+                <span *ngIf="codeField.errors?.required">
+                  El campo "Codigo" es obligatorio
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -35,7 +48,20 @@
                 name="name"
                 class="input is-info"
                 [(ngModel)]="product.name"
+                #nameField="ngModel"
+                required
               />
+
+              <div
+                *ngIf="
+                  nameField.invalid && (nameField.dirty || nameField.touched)
+                "
+                class="help is-danger"
+              >
+                <span *ngIf="nameField.errors?.required">
+                  El campo "Nombre" es obligatorio
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -73,7 +99,24 @@
                 name="price"
                 class="input is-info"
                 [(ngModel)]="product.price"
+                required
+                min="0.01"
+                #priceField="ngModel"
               />
+
+              <div
+                *ngIf="
+                  priceField.invalid && (priceField.dirty || priceField.touched)
+                "
+                class="help is-danger"
+              >
+                <span *ngIf="priceField.errors?.required">
+                  El campo "Precio" es obligatorio
+                </span>
+                <span *ngIf="priceField.errors?.min">
+                  Debe ingresar un numero mayor o igual a 0.01
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -92,16 +135,41 @@
                 name="minQuantity"
                 class="input is-info"
                 [(ngModel)]="product.min_Quantity"
+                required
+                min="1"
+                #minQuantityField="ngModel"
               />
+
+              <div
+                *ngIf="
+                  minQuantityField.invalid &&
+                  (minQuantityField.dirty || minQuantityField.touched)
+                "
+                class="help is-danger"
+              >
+                <span *ngIf="minQuantityField.errors?.required">
+                  El campo "Cantidad minima" es obligatorio
+                </span>
+                <span *ngIf="minQuantityField.errors?.min">
+                  Debe ingresar un numero mayor o igual a 1
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <div class="card-footer">
-      <a class="card-footer-item has-text-weight-bold has-text-success"
-        >Crear Producto</a
-      >
+      <div class="card-footer-item">
+        <input
+          type="submit"
+          value="Crear Producto"
+          class="has-text-weight-bold has-text-success"
+          [disabled]="form.invalid"
+        />
+      </div>
+
       <a
         [routerLink]="['/products']"
         class="card-footer-item has-text-weight-bold has-text-link"
