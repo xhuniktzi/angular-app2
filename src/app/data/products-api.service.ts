@@ -28,7 +28,23 @@ export class ProductsApiService {
 
   saveProduct(product: IProduct): Observable<any> {
     const url = 'http://localhost:5000/products';
-    return this.http.post(url, product);
+    return this.http
+      .post(url, product)
+      .pipe((data) => data, catchError(this.handleError));
+  }
+
+  updateProduct(code: string, product: IProduct): Observable<any> {
+    const url = `http://localhost:5000/products/${code}`;
+    return this.http
+      .put(url, product)
+      .pipe((data) => data, catchError(this.handleError));
+  }
+
+  deleteProduct(code: string): Observable<any> {
+    const url = `http://localhost:5000/products/${code}`;
+    return this.http
+      .delete(url)
+      .pipe((data) => data, catchError(this.handleError));
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {

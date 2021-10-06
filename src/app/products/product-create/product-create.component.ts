@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IProduct } from '../../common/product';
 import { ProductsApiService } from '../../data/products-api.service';
 
@@ -18,10 +19,19 @@ export class ProductCreateComponent implements OnInit {
     min_Quantity: undefined,
   };
 
-  constructor(private productsApiService: ProductsApiService) {}
+  constructor(
+    private productsApiService: ProductsApiService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
   onSubmit(form: NgForm): void {
-    // this.productsApiService.saveProduct(this.product);
+    if (form.valid) {
+      this.productsApiService.saveProduct(this.product).subscribe({
+        next: (data) => this.router.navigate(['/products/detail', data.code]),
+      });
+    } else {
+      // popup error
+    }
   }
 }
