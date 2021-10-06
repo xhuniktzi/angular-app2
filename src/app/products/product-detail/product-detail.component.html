@@ -28,7 +28,9 @@
       </div>
     </div>
     <div class="card-footer">
-      <a class="card-footer-item has-text-weight-bold has-text-warning-dark"
+      <a
+        [routerLink]="['/products/edit', product?.code]"
+        class="card-footer-item has-text-weight-bold has-text-warning-dark"
         >Editar</a
       >
       <a

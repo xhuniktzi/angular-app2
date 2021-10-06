@@ -5,7 +5,7 @@
     Actualmente {{ products.length }} productos en el sistema.
   </p>
   <p class="column is-half has-text-centered">
-    <a href="#" class="button is-success is-rounded">
+    <a [routerLink]="['/products/create']" class="button is-success is-rounded">
       ¿Desea crear un producto nuevo?
     </a>
   </p>

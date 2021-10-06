@@ -1,0 +1,112 @@
+<h1 class="title has-text-centered">Crear nuevo Producto</h1>
+
+<form class="columns is-centered" #form="ngForm">
+  <div class="card column">
+    <div class="card-content">
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label for="code" class="label">Codigo: </label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control is-expanded">
+              <input
+                type="text"
+                id="code"
+                name="code"
+                class="input is-info"
+                [(ngModel)]="product.code"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label for="name" class="label">Nombre: </label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control is-expanded">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="input is-info"
+                [(ngModel)]="product.name"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label for="description" class="label">Descripción: </label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control is-expanded">
+              <input
+                type="text"
+                id="description"
+                name="description"
+                class="input is-info"
+                [(ngModel)]="product.description"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label for="price" class="label">Precio: </label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control is-expanded">
+              <input
+                type="number"
+                id="price"
+                name="price"
+                class="input is-info"
+                [(ngModel)]="product.price"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label for="minQuantity" class="label">Cantidad minima: </label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control is-expanded">
+              <input
+                type="number"
+                id="minQuantity"
+                name="minQuantity"
+                class="input is-info"
+                [(ngModel)]="product.min_Quantity"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="card-footer-item has-text-weight-bold has-text-success"
+        >Crear Producto</a
+      >
+      <a
+        [routerLink]="['/products']"
+        class="card-footer-item has-text-weight-bold has-text-link"
+        >Regresar a la lista</a
+      >
+    </div>
+  </div>
+</form>
