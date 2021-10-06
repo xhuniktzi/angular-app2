@@ -30,8 +30,6 @@ export class ProductCreateComponent implements OnInit {
       this.productsApiService.saveProduct(this.product).subscribe({
         next: (data) => this.router.navigate(['/products/detail', data.code]),
       });
-    } else {
-      // popup error
     }
   }
 }

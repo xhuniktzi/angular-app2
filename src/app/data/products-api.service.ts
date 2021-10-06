@@ -40,7 +40,7 @@ export class ProductsApiService {
       .pipe((data) => data, catchError(this.handleError));
   }
 
-  deleteProduct(code: string): Observable<any> {
+  deleteProduct(code: string | undefined): Observable<any> {
     const url = `http://localhost:5000/products/${code}`;
     return this.http
       .delete(url)

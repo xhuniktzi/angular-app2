@@ -1,0 +1,61 @@
+<h1 class="title has-text-centered">Eliminar Producto</h1>
+
+<h2 class="subtitle has-text-centered">
+  ¿Estás seguro de que quieres borrar esto?
+</h2>
+<form class="columns is-centered" #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="card column">
+    <div class="card-content">
+      <div class="block">
+        <span class="has-text-weight-bold">Codigo: </span>
+        <span>{{ product?.code }}</span>
+        <!-- <span>@Html.DisplayFor(model => model.Code)</span> -->
+      </div>
+      <div class="block">
+        <span class="has-text-weight-bold">Nombre: </span>
+        <span>{{ product?.name }}</span>
+        <!-- <span>@Html.DisplayFor(model => model.Name)</span> -->
+      </div>
+      <div class="block">
+        <span class="has-text-weight-bold">Descripción: </span>
+        <span>{{ product?.description }}</span>
+        <!-- <span>@Html.DisplayFor(model => model.Description)</span> -->
+      </div>
+      <div class="block">
+        <span class="has-text-weight-bold">Precio: </span>
+        <span>{{ product?.price }}</span>
+        <!-- <span>@Html.DisplayFor(model => model.Price)</span> -->
+      </div>
+      <div class="block">
+        <div class="block">
+          <span class="has-text-weight-bold">Cantidad Minima: </span>
+          <span>{{ product?.min_Quantity }}</span>
+          <!-- <span>@Html.DisplayFor(model => model.Min_Quantity)</span> -->
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="card-footer-item">
+        <input
+          type="submit"
+          value="Eliminar Producto"
+          class="has-text-weight-bold has-text-danger"
+        />
+      </div>
+
+      <a
+        [routerLink]="['/products']"
+        class="card-footer-item has-text-weight-bold has-text-link"
+        >Regresar a la lista</a
+      >
+      <!-- <a
+        href="#"
+        onclick="document.getElementById('ProductForm').submit()"
+        class="card-footer-item has-text-weight-bold has-text-danger"
+        >Eliminar Producto</a
+      >
+      @Html.ActionLink("Regresar a la lista", "Index", "Product", null, new {
+      @class = "card-footer-item has-text-weight-bold" }) -->
+    </div>
+  </div>
+</form>
