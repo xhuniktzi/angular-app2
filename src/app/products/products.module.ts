@@ -7,9 +7,10 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductDeleteComponent } from './product-delete/product-delete.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
 
 @NgModule({
-  declarations: [ProductListComponent, ProductDetailComponent, ProductCreateComponent, ProductDeleteComponent],
+  declarations: [ProductListComponent, ProductDetailComponent, ProductCreateComponent, ProductDeleteComponent, ProductEditComponent],
   imports: [CommonModule, HttpClientModule, RouterModule, FormsModule],
   bootstrap: [ProductListComponent],
 })

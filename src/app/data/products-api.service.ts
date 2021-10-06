@@ -19,7 +19,7 @@ export class ProductsApiService {
       .pipe((data) => data, catchError(this.handleError));
   }
 
-  findProductByCode(code: string | null): Observable<IProduct | undefined> {
+  findProductByCode(code: string | null): Observable<IProduct> {
     const url = `http://localhost:5000/products/${code}`;
     return this.http
       .get<IProduct>(url)

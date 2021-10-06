@@ -8,6 +8,7 @@ import { ProductListComponent } from './products/product-list/product-list.compo
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductCreateComponent } from './products/product-create/product-create.component';
 import { ProductDeleteComponent } from './products/product-delete/product-delete.component';
+import { ProductEditComponent } from './products/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { ProductDeleteComponent } from './products/product-delete/product-delete
       { path: 'products', component: ProductListComponent },
       { path: 'products/create', component: ProductCreateComponent },
       { path: 'products/detail/:code', component: ProductDetailComponent },
+      { path: 'products/edit/:code', component: ProductEditComponent },
       { path: 'products/delete/:code', component: ProductDeleteComponent },
       { path: '', redirectTo: '/', pathMatch: 'full' },
       { path: '**', redirectTo: '/', pathMatch: 'full' },
