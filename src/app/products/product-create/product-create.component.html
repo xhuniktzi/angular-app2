@@ -161,14 +161,12 @@
     </div>
 
     <div class="card-footer">
-      <div class="card-footer-item">
-        <input
-          type="submit"
-          value="Crear Producto"
-          class="has-text-weight-bold has-text-success"
-          [disabled]="form.invalid"
-        />
-      </div>
+      <input
+        type="submit"
+        value="Crear Producto"
+        class="card-footer-item has-text-weight-bold has-text-success"
+        [disabled]="form.invalid"
+      />
 
       <a
         [routerLink]="['/products']"
