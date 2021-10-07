@@ -10,8 +10,10 @@ import { ProductCreateComponent } from './products/product-create/product-create
 import { ProductDeleteComponent } from './products/product-delete/product-delete.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { SharedModule } from './shared/shared.module';
+import { NotifyService } from './shared/notify.service';
 
 @NgModule({
+  providers: [NotifyService],
   declarations: [AppComponent],
   imports: [
     BrowserModule,

@@ -8,21 +8,9 @@ import { NotifyService } from './shared/notify.service';
 })
 export class AppComponent implements OnInit {
   menuIsActive: boolean = false;
-  msgs: string[] = [];
-  notifyIsVisible: boolean = false;
-  notifySubs: any;
+  constructor() {}
 
-  constructor(private notifyService: NotifyService) {}
-
-  ngOnInit(): void {
-    this.notifySubs = this.notifyService
-      .getNotification()
-      .subscribe((notify: string) => {
-        this.notifyIsVisible = true;
-        this.msgs = [];
-        this.msgs.push(notify);
-      });
-  }
+  ngOnInit(): void {}
   toggleMenu(): void {
     this.menuIsActive = !this.menuIsActive;
   }

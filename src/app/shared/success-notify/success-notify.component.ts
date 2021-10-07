@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NotifyService } from '../notify.service';
 
 @Component({
   selector: 'app-success-notify',
@@ -6,15 +7,20 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./success-notify.component.css'],
 })
 export class SuccessNotifyComponent implements OnInit {
-  @Input() value: string[] = [];
-  @Input() visible: boolean = false;
-  @Output() visibleChange = new EventEmitter<boolean>();
+  value: string[] = [];
+  visible: boolean = false;
 
-  constructor() {}
+  constructor(private notifyService: NotifyService) {}
 
   hide(): void {
     this.visible = false;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.notifyService.getNotification().subscribe((notify: string) => {
+      this.value = [];
+      this.value.push(notify);
+      this.visible = true;
+    });
+  }
 }
