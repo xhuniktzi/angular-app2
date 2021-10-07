@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from 'src/app/common/product';
 import { ProductsApiService } from 'src/app/data/products-api.service';
+import { NotifyService } from 'src/app/shared/notify.service';
 
 @Component({
   selector: 'app-product-delete',
@@ -14,7 +15,8 @@ export class ProductDeleteComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private productsApiService: ProductsApiService
+    private productsApiService: ProductsApiService,
+    private notifyService: NotifyService
   ) {}
 
   ngOnInit(): void {
@@ -24,9 +26,14 @@ export class ProductDeleteComponent implements OnInit {
     });
   }
 
-  onSubmit(form: NgForm): void {
+  onSubmit(): void {
     this.productsApiService.deleteProduct(this.product?.code).subscribe({
-      next: (data) => this.router.navigate(['/products']),
+      next: () => {
+        this.notifyService.show(
+          `producto: "${this.product?.code} - ${this.product?.name}" eliminado correctamente`
+        );
+        this.router.navigate(['/products']);
+      },
     });
   }
 }

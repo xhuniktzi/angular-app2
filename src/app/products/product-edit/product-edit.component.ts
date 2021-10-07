@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from 'src/app/common/product';
 import { ProductsApiService } from 'src/app/data/products-api.service';
+import { NotifyService } from 'src/app/shared/notify.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -22,7 +23,8 @@ export class ProductEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private productsApiService: ProductsApiService
+    private productsApiService: ProductsApiService,
+    private notifyService: NotifyService
   ) {}
 
   ngOnInit(): void {
@@ -37,8 +39,12 @@ export class ProductEditComponent implements OnInit {
       this.productsApiService
         .updateProduct(this.product.code, this.product)
         .subscribe({
-          next: (data) =>
-            this.router.navigate(['/products/detail', this.product.code]),
+          next: () => {
+            this.notifyService.show(
+              `producto: "${this.product.code} - ${this.product.name}" actualizado correctamente`
+            );
+            this.router.navigate(['/products/detail', this.product.code]);
+          },
         });
     }
   }

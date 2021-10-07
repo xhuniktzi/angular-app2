@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,12 +9,14 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
 import { ProductCreateComponent } from './products/product-create/product-create.component';
 import { ProductDeleteComponent } from './products/product-delete/product-delete.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,
+    SharedModule,
     ProductsModule,
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
@@ -27,5 +29,6 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
     ]),
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
