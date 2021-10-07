@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { INotify } from 'src/app/common/notifiy';
 import { NotifyService } from '../notify.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { NotifyService } from '../notify.service';
 export class SuccessNotifyComponent implements OnInit {
   value: string[] = [];
   visible: boolean = false;
+  class: string = '';
 
   constructor(private notifyService: NotifyService) {}
 
@@ -17,10 +19,17 @@ export class SuccessNotifyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.notifyService.getNotification().subscribe((notify: string) => {
+    this.notifyService.getNotification().subscribe((notify: INotify) => {
       this.value = [];
-      this.value.push(notify);
-      this.visible = true;
+      if (notify.type == 'success') {
+        this.class = 'is-success';
+        this.value.push(notify.msg);
+        this.visible = true;
+      } else if (notify.type == 'error') {
+        this.class = 'is-danger';
+        this.value.push(notify.msg);
+        this.visible = true;
+      }
     });
   }
 }

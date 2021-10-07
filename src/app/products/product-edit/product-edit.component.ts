@@ -40,10 +40,17 @@ export class ProductEditComponent implements OnInit {
         .updateProduct(this.product.code, this.product)
         .subscribe({
           next: () => {
-            this.notifyService.show(
-              `producto: "${this.product.code} - ${this.product.name}" actualizado correctamente`
-            );
+            this.notifyService.show({
+              type: 'success',
+              msg: `producto: "${this.product.code} - ${this.product.name}" actualizado correctamente`,
+            });
             this.router.navigate(['/products/detail', this.product.code]);
+          },
+          error: (err) => {
+            this.notifyService.show({
+              type: 'error',
+              msg: `${err}`,
+            });
           },
         });
     }

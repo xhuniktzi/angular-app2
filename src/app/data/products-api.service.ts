@@ -49,12 +49,13 @@ export class ProductsApiService {
 
   private handleError(err: HttpErrorResponse): Observable<never> {
     let errorMessage = '';
+    console.error(err);
     if (err.error instanceof ErrorEvent) {
       errorMessage = `An error occurred: ${err.error.message}`;
     } else {
       errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
     }
     console.error(errorMessage);
-    return throwError(errorMessage);
+    return throwError(err.error);
   }
 }

@@ -31,10 +31,17 @@ export class ProductCreateComponent implements OnInit {
     if (form.valid) {
       this.productsApiService.saveProduct(this.product).subscribe({
         next: (data) => {
-          this.notifyService.show(
-            `producto: ${data.code} - ${data.name} creado`
-          );
+          this.notifyService.show({
+            type: 'success',
+            msg: `producto: ${data.code} - ${data.name} creado`,
+          });
           this.router.navigate(['/products/detail', data.code]);
+        },
+        error: (err) => {
+          this.notifyService.show({
+            type: 'error',
+            msg: `${err}`,
+          });
         },
       });
     }

@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { INotify } from '../common/notifiy';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotifyService {
-  showNotifySource: Subject<string> = new Subject<string>();
+  showNotifySource: Subject<INotify> = new Subject<INotify>();
 
-  getNotification(): Observable<string> {
+  getNotification(): Observable<INotify> {
     return this.showNotifySource.asObservable();
   }
 
-  show(msg: string): void {
+  show(msg: INotify): void {
     this.notify(msg);
   }
 
-  private notify(msg: string): void {
+  private notify(msg: INotify): void {
     this.showNotifySource.next(msg);
   }
 }

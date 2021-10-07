@@ -29,10 +29,17 @@ export class ProductDeleteComponent implements OnInit {
   onSubmit(): void {
     this.productsApiService.deleteProduct(this.product?.code).subscribe({
       next: () => {
-        this.notifyService.show(
-          `producto: "${this.product?.code} - ${this.product?.name}" eliminado correctamente`
-        );
+        this.notifyService.show({
+          type: 'success',
+          msg: `producto: "${this.product?.code} - ${this.product?.name}" eliminado correctamente`,
+        });
         this.router.navigate(['/products']);
+      },
+      error: (err) => {
+        this.notifyService.show({
+          type: 'error',
+          msg: `${err}`,
+        });
       },
     });
   }

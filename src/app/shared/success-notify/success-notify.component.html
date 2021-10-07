@@ -1,4 +1,4 @@
-<div class="notification is-success" [class.is-hidden]="!visible">
+<div class="notification" [class.is-hidden]="!visible" [class]="class">
   <button class="delete" (click)="hide()"></button>
   <ul *ngFor="let item of value">
     <li>{{ item }}</li>
