@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { NotifyService } from './shared/notify.service';
 import { ClientsModule } from './clients/clients.module';
 import { ClientListComponent } from './clients/client-list/client-list.component';
+import { ClientDetailComponent } from './clients/client-detail/client-detail.component';
 
 @NgModule({
   providers: [NotifyService],
@@ -30,6 +31,7 @@ import { ClientListComponent } from './clients/client-list/client-list.component
       { path: 'products/edit/:code', component: ProductEditComponent },
       { path: 'products/delete/:code', component: ProductDeleteComponent },
       { path: 'clients', component: ClientListComponent },
+      { path: 'clients/detail/:id', component: ClientDetailComponent },
       { path: '', redirectTo: '/', pathMatch: 'full' },
       { path: '**', redirectTo: '/', pathMatch: 'full' },
     ]),

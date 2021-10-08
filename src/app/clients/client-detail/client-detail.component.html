@@ -1,0 +1,39 @@
+<h1 class="title has-text-centered">Información del cliente</h1>
+<div class="columns is-centered">
+  <div class="card column">
+    <div class="card-content">
+      <div class="block">
+        <span class="has-text-weight-bold">Nombre: </span>
+        <span>{{ client?.name }}</span>
+      </div>
+      <div class="block">
+        <span class="has-text-weight-bold">Nit: </span>
+        <span>{{ client?.nit }}</span>
+      </div>
+      <div class="block">
+        <span class="has-text-weight-bold">Numero de telefono: </span>
+        <span>{{ client?.phone_Number }}</span>
+      </div>
+      <div class="block">
+        <span class="has-text-weight-bold">Dirección: </span>
+        <span>{{ client?.direction }}</span>
+      </div>
+      <div class="block">
+        <span class="has-text-weight-bold">Correo electronico: </span>
+        <span>{{ client?.e_Mail }}</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a
+        [routerLink]="['/clients/edit', client?.client_Id]"
+        class="card-footer-item has-text-weight-bold has-text-warning-dark"
+        >Editar</a
+      >
+      <a
+        [routerLink]="['/clients']"
+        class="card-footer-item has-text-weight-bold"
+        >Regresar a la lista</a
+      >
+    </div>
+  </div>
+</div>
