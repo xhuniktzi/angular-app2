@@ -44,6 +44,11 @@ export class ProductCreateComponent implements OnInit {
           });
         },
       });
+    } else {
+      this.notifyService.show({
+        type: 'error',
+        msg: 'Revisa que los campos esten llenados correctamente',
+      });
     }
   }
 }
