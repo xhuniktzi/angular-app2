@@ -1,0 +1,44 @@
+<h1 class="title has-text-centered">Eliminar Cliente</h1>
+
+<h2 class="subtitle has-text-centered">
+  ¿Estás seguro de que quieres borrar esto?
+</h2>
+<form class="columns is-centered" #form="ngForm" (ngSubmit)="onSubmit()">
+  <div class="card column">
+    <div class="card-content">
+      <div class="block">
+        <span class="has-text-weight-bold">Nombre: </span>
+        <span>{{ client?.name }}</span>
+      </div>
+      <div class="block">
+        <span class="has-text-weight-bold">Nit: </span>
+        <span>{{ client?.nit }}</span>
+      </div>
+      <div class="block">
+        <span class="has-text-weight-bold">Numero de telefono: </span>
+        <span>{{ client?.phone_Number }}</span>
+      </div>
+      <div class="block">
+        <span class="has-text-weight-bold">Dirección: </span>
+        <span>{{ client?.direction }}</span>
+      </div>
+      <div class="block">
+        <span class="has-text-weight-bold">Correo electronico: </span>
+        <span>{{ client?.e_Mail }}</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <input
+        type="submit"
+        value="Eliminar Cliente"
+        class="card-footer-item has-text-weight-bold has-text-danger"
+      />
+
+      <a
+        [routerLink]="['/clients']"
+        class="card-footer-item has-text-weight-bold has-text-link"
+        >Regresar a la lista</a
+      >
+    </div>
+  </div>
+</form>

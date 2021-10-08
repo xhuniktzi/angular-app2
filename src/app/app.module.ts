@@ -14,6 +14,7 @@ import { NotifyService } from './shared/notify.service';
 import { ClientsModule } from './clients/clients.module';
 import { ClientListComponent } from './clients/client-list/client-list.component';
 import { ClientDetailComponent } from './clients/client-detail/client-detail.component';
+import { ClientDeleteComponent } from './clients/client-delete/client-delete.component';
 
 @NgModule({
   providers: [NotifyService],
@@ -32,6 +33,7 @@ import { ClientDetailComponent } from './clients/client-detail/client-detail.com
       { path: 'products/delete/:code', component: ProductDeleteComponent },
       { path: 'clients', component: ClientListComponent },
       { path: 'clients/detail/:id', component: ClientDetailComponent },
+      { path: 'clients/delete/:id', component: ClientDeleteComponent },
       { path: '', redirectTo: '/', pathMatch: 'full' },
       { path: '**', redirectTo: '/', pathMatch: 'full' },
     ]),
