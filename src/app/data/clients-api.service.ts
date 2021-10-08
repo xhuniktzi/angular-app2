@@ -3,44 +3,44 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { IProduct } from '../common/product';
+import { IClient } from '../common/client';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductsApiService {
+export class ClientsApiService {
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<IProduct[]> {
-    const url = `${environment.api}/products`;
+  getClients(): Observable<IClient[]> {
+    const url = `${environment.api}/clients`;
     return this.http
-      .get<IProduct[]>(url)
+      .get<IClient[]>(url)
       .pipe((data) => data, catchError(this.handleError));
   }
 
-  findProductByCode(code: string | null): Observable<IProduct> {
-    const url = `${environment.api}/products/${code}`;
+  findClientById(id: number | null): Observable<IClient> {
+    const url = `${environment.api}/clients/${id}`;
     return this.http
-      .get<IProduct>(url)
+      .get<IClient>(url)
       .pipe((data) => data, catchError(this.handleError));
   }
 
-  saveProduct(product: IProduct): Observable<any> {
-    const url = `${environment.api}/products`;
+  saveClient(client: IClient): Observable<any> {
+    const url = `${environment.api}/clients`;
     return this.http
-      .post(url, product)
+      .post(url, client)
       .pipe((data) => data, catchError(this.handleError));
   }
 
-  updateProduct(code: string, product: IProduct): Observable<any> {
-    const url = `${environment.api}/products/${code}`;
+  updateClient(id: number, client: IClient): Observable<any> {
+    const url = `${environment.api}/clients/${id}`;
     return this.http
-      .put(url, product)
+      .put(url, client)
       .pipe((data) => data, catchError(this.handleError));
   }
 
-  deleteProduct(code: string | undefined): Observable<any> {
-    const url = `${environment.api}/products/${code}`;
+  deleteClient(id: number | undefined): Observable<any> {
+    const url = `${environment.api}/clients/${id}`;
     return this.http
       .delete(url)
       .pipe((data) => data, catchError(this.handleError));

@@ -11,6 +11,8 @@ import { ProductDeleteComponent } from './products/product-delete/product-delete
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { SharedModule } from './shared/shared.module';
 import { NotifyService } from './shared/notify.service';
+import { ClientsModule } from './clients/clients.module';
+import { ClientListComponent } from './clients/client-list/client-list.component';
 
 @NgModule({
   providers: [NotifyService],
@@ -20,12 +22,14 @@ import { NotifyService } from './shared/notify.service';
     CommonModule,
     SharedModule,
     ProductsModule,
+    ClientsModule,
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
       { path: 'products/create', component: ProductCreateComponent },
       { path: 'products/detail/:code', component: ProductDetailComponent },
       { path: 'products/edit/:code', component: ProductEditComponent },
       { path: 'products/delete/:code', component: ProductDeleteComponent },
+      { path: 'clients', component: ClientListComponent },
       { path: '', redirectTo: '/', pathMatch: 'full' },
       { path: '**', redirectTo: '/', pathMatch: 'full' },
     ]),

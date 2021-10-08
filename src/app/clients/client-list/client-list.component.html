@@ -1,0 +1,56 @@
+<h1 class="title has-text-centered">Clientes</h1>
+
+<div class="box columns is-vcentered">
+  <p class="column is-half has-text-centered">
+    Actualmente {{ clients.length }} clientes en el sistema.
+  </p>
+  <p class="column is-half has-text-centered">
+    <a [routerLink]="['/clients/create']" class="button is-success is-rounded">
+      ¿Desea crear un cliente nuevo?
+    </a>
+  </p>
+</div>
+
+<div class="table-container">
+  <table
+    class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+  >
+    <thead>
+      <tr class="has-text-centered">
+        <th>Nombre</th>
+        <th>Nit</th>
+        <th>Numero de telefono</th>
+        <th>Dirección</th>
+        <th>Correo electronico</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of clients">
+        <td>{{ c.name }}</td>
+        <td>{{ c.nit }}</td>
+        <td>{{ c.phone_Number }}</td>
+        <td>{{ c.direction }}</td>
+        <td>{{ c.e_Mail }}</td>
+
+        <td>
+          <a
+            [routerLink]="['/clients/detail', c.client_Id]"
+            class="button is-small is-link is-rounded"
+            >Ver detalles</a
+          >
+          <a
+            [routerLink]="['/clients/edit', c.client_Id]"
+            class="button is-small is-info is-rounded"
+            >Editar</a
+          >
+          <a
+            [routerLink]="['/clients/delete', c.client_Id]"
+            class="button is-small is-danger is-rounded"
+            >Eliminar</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
