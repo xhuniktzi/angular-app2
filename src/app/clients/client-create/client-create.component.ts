@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IClient } from 'src/app/common/client';
+import { ClientsApiService } from 'src/app/data/clients-api.service';
 import { NotifyService } from 'src/app/shared/notify.service';
-import { IProduct } from '../../common/product';
-import { ProductsApiService } from '../../data/products-api.service';
 
 @Component({
-  selector: 'app-product-create',
-  templateUrl: './product-create.component.html',
-  styleUrls: ['./product-create.component.css'],
+  selector: 'app-client-create',
+  templateUrl: './client-create.component.html',
+  styleUrls: ['./client-create.component.css'],
 })
-export class ProductCreateComponent implements OnInit {
-  product: IProduct = {
-    product_Id: undefined,
-    code: '',
+export class ClientCreateComponent implements OnInit {
+  client: IClient = {
+    client_Id: undefined,
     name: '',
-    description: '',
-    price: undefined,
-    min_Quantity: undefined,
+    nit: '',
+    phone_Number: '',
+    direction: '',
+    e_Mail: '',
   };
 
   constructor(
-    private productsApiService: ProductsApiService,
+    private clientApiService: ClientsApiService,
     private router: Router,
     private notifyService: NotifyService
   ) {}
@@ -29,13 +29,13 @@ export class ProductCreateComponent implements OnInit {
   ngOnInit(): void {}
   onSubmit(form: NgForm): void {
     if (form.valid) {
-      this.productsApiService.saveProduct(this.product).subscribe({
+      this.clientApiService.saveClient(this.client).subscribe({
         next: (data) => {
           this.notifyService.show({
             type: 'success',
-            msg: `producto: "${data.code} - ${data.name}" creado correctamente`,
+            msg: `cliente: "${data.name}" creado correctamente`,
           });
-          this.router.navigate(['/products/detail', data.code]);
+          this.router.navigate(['/clients/detail', data.client_Id]);
         },
         error: (err) => {
           this.notifyService.show({

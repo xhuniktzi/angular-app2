@@ -1,0 +1,155 @@
+<h1 class="title has-text-centered">Crear nuevo Cliente</h1>
+
+<form class="columns is-centered" #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="card column">
+    <div class="card-content">
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label for="name" class="label">Nombre: </label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control is-expanded">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="input is-info"
+                [(ngModel)]="client.name"
+                #nameField="ngModel"
+                required
+              />
+
+              <div
+                *ngIf="
+                  nameField.invalid && (nameField.dirty || nameField.touched)
+                "
+                class="help is-danger"
+              >
+                <span *ngIf="nameField.errors?.required">
+                  El campo "Nombre" es obligatorio
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label for="nit" class="label">Nit: </label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control is-expanded">
+              <input
+                type="text"
+                id="nit"
+                name="nit"
+                class="input is-info"
+                [(ngModel)]="client.nit"
+                #nitField="ngModel"
+                required
+              />
+
+              <div
+                *ngIf="nitField.invalid && (nitField.dirty || nitField.touched)"
+                class="help is-danger"
+              >
+                <span *ngIf="nitField.errors?.required">
+                  El campo "Nit" es obligatorio
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label for="phoneNumber" class="label">Telefono: </label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control is-expanded">
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                class="input is-info"
+                [(ngModel)]="client.phone_Number"
+                #phoneNumberField="ngModel"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label for="direction" class="label">Dirección: </label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control is-expanded">
+              <input
+                type="text"
+                id="direction"
+                name="direction"
+                class="input is-info"
+                [(ngModel)]="client.direction"
+                #directionField="ngModel"
+                required
+              />
+              <div
+                *ngIf="
+                  directionField.invalid &&
+                  (directionField.dirty || directionField.touched)
+                "
+                class="help is-danger"
+              >
+                <span *ngIf="directionField.errors?.required">
+                  El campo "Dirección" es obligatorio
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label for="eMail" class="label">Correo electronico: </label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control is-expanded">
+              <input
+                type="email"
+                id="eMail"
+                name="eMail"
+                class="input is-info"
+                [(ngModel)]="client.e_Mail"
+                #eMailField="ngModel"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <input
+        type="submit"
+        value="Crear Cliente"
+        class="card-footer-item has-text-weight-bold has-text-success"
+      />
+
+      <a
+        [routerLink]="['/clients']"
+        class="card-footer-item has-text-weight-bold has-text-link"
+        >Regresar a la lista</a
+      >
+    </div>
+  </div>
+</form>

@@ -5,12 +5,14 @@ import { RouterModule } from '@angular/router';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { ClientDeleteComponent } from './client-delete/client-delete.component';
 import { FormsModule } from '@angular/forms';
+import { ClientCreateComponent } from './client-create/client-create.component';
 
 @NgModule({
   declarations: [
     ClientListComponent,
     ClientDetailComponent,
     ClientDeleteComponent,
+    ClientCreateComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   bootstrap: [ClientListComponent],
