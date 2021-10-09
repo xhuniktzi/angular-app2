@@ -6,6 +6,7 @@ import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { ClientDeleteComponent } from './client-delete/client-delete.component';
 import { FormsModule } from '@angular/forms';
 import { ClientCreateComponent } from './client-create/client-create.component';
+import { ClientEditComponent } from './client-edit/client-edit.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ClientCreateComponent } from './client-create/client-create.component';
     ClientDetailComponent,
     ClientDeleteComponent,
     ClientCreateComponent,
+    ClientEditComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   bootstrap: [ClientListComponent],
