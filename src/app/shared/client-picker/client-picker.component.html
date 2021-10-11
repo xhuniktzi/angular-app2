@@ -1,0 +1,60 @@
+<div class="modal" [class.is-active]="visible">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="box">
+      <h2 class="title has-text-centered">Buscar Clientes</h2>
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <input
+            id="name"
+            name="name"
+            class="input"
+            type="text"
+            placeholder="NOMBRE"
+            [(ngModel)]="name"
+          />
+        </div>
+        <div class="control is-expanded">
+          <input
+            id="nit"
+            name="nit"
+            class="input"
+            type="text"
+            placeholder="NIT"
+            [(ngModel)]="nit"
+          />
+        </div>
+        <div class="control">
+          <button class="button is-link" (click)="search()">Buscar</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table
+          class="
+            table
+            is-bordered is-striped is-narrow is-hoverable is-fullwidth
+          "
+        >
+          <thead>
+            <tr class="has-text-centered">
+              <th>Nombre</th>
+              <th>Nit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of results" (click)="select(item)">
+              <td>{{ item.name }}</td>
+              <td>{{ item.nit }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <button
+    class="modal-close is-large"
+    aria-label="close"
+    (click)="close()"
+  ></button>
+</div>

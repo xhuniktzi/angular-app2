@@ -46,6 +46,13 @@ export class ClientsApiService {
       .pipe((data) => data, catchError(this.handleError));
   }
 
+  findClientByNameAndNit(name: string, nit: string): Observable<IClient[]> {
+    const url = `${environment.api}/clients/findByNameAndNit?name=${name}&nit=${nit}`;
+    return this.http
+      .get<IClient[]>(url)
+      .pipe((data) => data, catchError(this.handleError));
+  }
+
   private handleError(err: HttpErrorResponse): Observable<never> {
     let errorMessage = '';
     console.error(err);
