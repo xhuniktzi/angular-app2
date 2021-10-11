@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IClient } from 'src/app/common/client';
+import { IProduct } from 'src/app/common/product';
 import { IResult } from 'src/app/common/result';
 import { InvoiceApiService } from 'src/app/data/invoice-api.service';
 
@@ -11,12 +12,14 @@ import { InvoiceApiService } from 'src/app/data/invoice-api.service';
 export class QueryReportComponent implements OnInit {
   queryIsVisible: boolean = true;
   modalClientIsVisible: boolean = false;
+  modalProductIsVisible: boolean = false;
 
   startDate: string = '';
   endDate: string = '';
   serial: string | undefined;
   invoiceNumber: number | undefined;
   selectedClient: IClient | undefined;
+  selectedProduct: IProduct | undefined;
 
   results: IResult[] = [];
   constructor(private invoiceApiService: InvoiceApiService) {}
@@ -39,6 +42,7 @@ export class QueryReportComponent implements OnInit {
         Serial_Number: this.serial,
         Invoice_Number: this.invoiceNumber,
         Client_Id: this.selectedClient?.client_Id,
+        Product_Id: this.selectedProduct?.product_Id,
       })
       .subscribe({
         next: (results) => {
@@ -54,6 +58,7 @@ export class QueryReportComponent implements OnInit {
     this.serial = undefined;
     this.invoiceNumber = undefined;
     this.selectedClient = undefined;
+    this.selectedProduct = undefined;
 
     this.queryIsVisible = true;
   }
@@ -62,7 +67,15 @@ export class QueryReportComponent implements OnInit {
     this.modalClientIsVisible = true;
   }
 
+  openModalProduct(): void {
+    this.modalProductIsVisible = true;
+  }
+
   selectClient(client: IClient | undefined): void {
     this.selectedClient = client;
+  }
+
+  selectProduct(product: IProduct | undefined): void {
+    this.selectedProduct = product;
   }
 }

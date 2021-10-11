@@ -46,6 +46,13 @@ export class ProductsApiService {
       .pipe((data) => data, catchError(this.handleError));
   }
 
+  findProductByName(name: string): Observable<IProduct[]> {
+    const url = `${environment.api}/products/findByName/${name}`;
+    return this.http
+      .get<IProduct[]>(url)
+      .pipe((data) => data, catchError(this.handleError));
+  }
+
   private handleError(err: HttpErrorResponse): Observable<never> {
     let errorMessage = '';
     console.error(err);

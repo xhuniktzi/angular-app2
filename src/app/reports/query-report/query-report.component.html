@@ -3,6 +3,11 @@
   [(visible)]="modalClientIsVisible"
 ></app-client-picker>
 
+<app-product-picker
+  (currentProduct)="selectProduct($event)"
+  [(visible)]="modalProductIsVisible"
+></app-product-picker>
+
 <h1 class="title has-text-centered">Consulta</h1>
 <div class="box columns is-vcentered">
   <div class="column has-text-centered is-half">
@@ -153,11 +158,16 @@
                 name="product"
                 id="product"
                 class="input is-info is-static"
+                value="{{ selectedProduct?.code }} - {{
+                  selectedProduct?.name
+                }}"
               />
             </fieldset>
           </div>
           <div class="control">
-            <button class="button is-info">Buscar</button>
+            <button class="button is-info" (click)="openModalProduct()">
+              Buscar
+            </button>
           </div>
         </div>
       </div>
