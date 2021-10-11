@@ -17,6 +17,8 @@ import { ClientDetailComponent } from './clients/client-detail/client-detail.com
 import { ClientDeleteComponent } from './clients/client-delete/client-delete.component';
 import { ClientCreateComponent } from './clients/client-create/client-create.component';
 import { ClientEditComponent } from './clients/client-edit/client-edit.component';
+import { QueryReportComponent } from './reports/query-report/query-report.component';
+import { ReportsModule } from './reports/reports.module';
 
 @NgModule({
   providers: [NotifyService],
@@ -27,6 +29,7 @@ import { ClientEditComponent } from './clients/client-edit/client-edit.component
     SharedModule,
     ProductsModule,
     ClientsModule,
+    ReportsModule,
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
       { path: 'products/create', component: ProductCreateComponent },
@@ -38,6 +41,7 @@ import { ClientEditComponent } from './clients/client-edit/client-edit.component
       { path: 'clients/detail/:id', component: ClientDetailComponent },
       { path: 'clients/edit/:id', component: ClientEditComponent },
       { path: 'clients/delete/:id', component: ClientDeleteComponent },
+      { path: 'reports', component: QueryReportComponent },
       { path: '', redirectTo: '/', pathMatch: 'full' },
       { path: '**', redirectTo: '/', pathMatch: 'full' },
     ]),

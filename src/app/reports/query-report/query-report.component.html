@@ -1,0 +1,226 @@
+<h1 class="title has-text-centered">Consulta</h1>
+<div class="box columns is-vcentered">
+  <div class="column has-text-centered is-half">
+    <button
+      type="button"
+      class="button is-success is-rounded"
+      (click)="onSubmit()"
+    >
+      Consultar
+    </button>
+  </div>
+  <div class="column has-text-centered is-half">
+    <button type="button" class="button is-danger is-rounded">
+      Limpiar Consulta
+    </button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <p class="card-header-title">Filtros</p>
+    <button
+      class="card-header-icon"
+      aria-label="more options"
+      (click)="toggle()"
+    >
+      <span class="icon">
+        <i
+          class="fas"
+          aria-hidden="true"
+          [class.fa-angle-down]="queryIsVisible"
+          [class.fa-angle-up]="!queryIsVisible"
+        ></i>
+      </span>
+    </button>
+  </div>
+  <div class="card-content" [class.is-hidden]="!queryIsVisible">
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label for="startDate" class="label">Fecha de inicio</label>
+      </div>
+      <div class="field-body">
+        <div class="field control is-expanded">
+          <input
+            type="date"
+            name="startDate"
+            id="startDate"
+            class="input is-info"
+            required
+            [(ngModel)]="startDate"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label for="endDate" class="label">Fecha de fin</label>
+      </div>
+      <div class="field-body">
+        <div class="field control is-expanded">
+          <input
+            type="date"
+            name="endDate"
+            id="endDate"
+            class="input is-info"
+            required
+            [(ngModel)]="endDate"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label for="serial" class="label">Serie</label>
+      </div>
+      <div class="field-body">
+        <div class="field control is-expanded">
+          <input
+            type="text"
+            name="serial"
+            id="serial"
+            class="input is-info"
+            [(ngModel)]="serial"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label for="invoiceNumber" class="label">Numero de factura</label>
+      </div>
+      <div class="field-body">
+        <div class="field control is-expanded">
+          <input
+            type="number"
+            name="invoiceNumber"
+            id="invoiceNumber"
+            class="input is-info"
+            [(ngModel)]="invoiceNumber"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label for="client" class="label">Cliente</label>
+      </div>
+      <div class="field-body">
+        <div class="field is-expanded has-addons">
+          <div class="control is-expanded">
+            <fieldset disabled="disabled">
+              <input
+                type="text"
+                name="client"
+                id="client"
+                class="input is-info is-static"
+              />
+            </fieldset>
+          </div>
+          <div class="control">
+            <button class="button is-info">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label for="product" class="label">Producto</label>
+      </div>
+      <div class="field-body">
+        <div class="field is-expanded has-addons">
+          <div class="control is-expanded">
+            <fieldset disabled="disabled">
+              <input
+                type="text"
+                name="product"
+                id="product"
+                class="input is-info is-static"
+              />
+            </fieldset>
+          </div>
+          <div class="control">
+            <button class="button is-info">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label for="branch" class="label">Sucursal</label>
+      </div>
+      <div class="field-body">
+        <div class="field is-expanded has-addons">
+          <div class="control is-expanded">
+            <fieldset disabled="disabled">
+              <input
+                type="text"
+                name="branch"
+                id="branch"
+                class="input is-info is-static"
+              />
+            </fieldset>
+          </div>
+          <div class="control">
+            <button class="button is-info">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="box mt-4">
+  <div class="table-container">
+    <table
+      class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+    >
+      <thead>
+        <tr class="has-text-centered">
+          <th>Numero de Orden</th>
+          <th>Serie</th>
+          <th>Numero de factura</th>
+          <th>Nombre del Cliente</th>
+          <th>Dirección</th>
+          <th>Numero de Nit</th>
+          <th>Nombre de la Sucursal</th>
+          <th>Dirección</th>
+          <th>Fecha</th>
+          <th>Codigo de Producto</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Total</th>
+          <th>Total de la Orden</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of results">
+          <td>{{ item.order_Id }}</td>
+          <td>{{ item.serial_Number }}</td>
+          <td>{{ item.invoice_Number }}</td>
+          <td>{{ item.client_Name }}</td>
+          <td>{{ item.client_Direction }}</td>
+          <td>{{ item.client_Nit }}</td>
+          <td>{{ item.branch_Name }}</td>
+          <td>{{ item.branch_Direction }}</td>
+          <td>{{ item.order_Date }}</td>
+          <td>{{ item.product_Code }}</td>
+          <td>{{ item.product_Name }}</td>
+          <td>{{ item.product_Description }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.total }}</td>
+          <td>{{ item.order_Total }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
