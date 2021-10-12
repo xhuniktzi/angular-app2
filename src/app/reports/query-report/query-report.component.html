@@ -8,6 +8,11 @@
   [(visible)]="modalProductIsVisible"
 ></app-product-picker>
 
+<app-branch-picker
+  (currentBranch)="selectBranch($event)"
+  [(visible)]="modalBranchIsVisible"
+></app-branch-picker>
+
 <h1 class="title has-text-centered">Consulta</h1>
 <div class="box columns is-vcentered">
   <div class="column has-text-centered is-half">
@@ -186,11 +191,16 @@
                 name="branch"
                 id="branch"
                 class="input is-info is-static"
+                value="{{ selectedBranch?.name }} - {{
+                  selectedBranch?.direction
+                }}"
               />
             </fieldset>
           </div>
           <div class="control">
-            <button class="button is-info">Buscar</button>
+            <button class="button is-info" (click)="openModalBranch()">
+              Buscar
+            </button>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IBranch } from 'src/app/common/branch';
 import { IClient } from 'src/app/common/client';
 import { IProduct } from 'src/app/common/product';
 import { IResult } from 'src/app/common/result';
@@ -13,6 +14,7 @@ export class QueryReportComponent implements OnInit {
   queryIsVisible: boolean = true;
   modalClientIsVisible: boolean = false;
   modalProductIsVisible: boolean = false;
+  modalBranchIsVisible: boolean = false;
 
   startDate: string = '';
   endDate: string = '';
@@ -20,6 +22,7 @@ export class QueryReportComponent implements OnInit {
   invoiceNumber: number | undefined;
   selectedClient: IClient | undefined;
   selectedProduct: IProduct | undefined;
+  selectedBranch: IBranch | undefined;
 
   results: IResult[] = [];
   constructor(private invoiceApiService: InvoiceApiService) {}
@@ -43,6 +46,7 @@ export class QueryReportComponent implements OnInit {
         Invoice_Number: this.invoiceNumber,
         Client_Id: this.selectedClient?.client_Id,
         Product_Id: this.selectedProduct?.product_Id,
+        Branch_Id: this.selectedBranch?.branch_Id,
       })
       .subscribe({
         next: (results) => {
@@ -59,6 +63,7 @@ export class QueryReportComponent implements OnInit {
     this.invoiceNumber = undefined;
     this.selectedClient = undefined;
     this.selectedProduct = undefined;
+    this.selectedBranch = undefined;
 
     this.queryIsVisible = true;
   }
@@ -71,11 +76,19 @@ export class QueryReportComponent implements OnInit {
     this.modalProductIsVisible = true;
   }
 
+  openModalBranch(): void {
+    this.modalBranchIsVisible = true;
+  }
+
   selectClient(client: IClient | undefined): void {
     this.selectedClient = client;
   }
 
   selectProduct(product: IProduct | undefined): void {
     this.selectedProduct = product;
+  }
+
+  selectBranch(branch: IBranch | undefined): void {
+    this.selectedBranch = branch;
   }
 }

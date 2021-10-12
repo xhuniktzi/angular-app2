@@ -5,4 +5,5 @@ export interface IQueryReport {
   Invoice_Number: number | undefined;
   Client_Id: number | undefined;
   Product_Id: number | undefined;
+  Branch_Id: number | undefined;
 }
