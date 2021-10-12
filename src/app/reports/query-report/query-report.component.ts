@@ -37,7 +37,6 @@ export class QueryReportComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.queryIsVisible = false;
     this.invoiceApiService
       .findInvoices({
         Start_Date: this.startDate,
@@ -64,8 +63,6 @@ export class QueryReportComponent implements OnInit {
     this.selectedClient = undefined;
     this.selectedProduct = undefined;
     this.selectedBranch = undefined;
-
-    this.queryIsVisible = true;
   }
 
   openModalClient(): void {
