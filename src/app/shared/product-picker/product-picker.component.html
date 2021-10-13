@@ -32,12 +32,16 @@
             <tr class="has-text-centered">
               <th>Codigo</th>
               <th>Nombre</th>
+              <th>Precio</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of results" (click)="select(item)">
               <td>{{ item.code }}</td>
               <td>{{ item.name }}</td>
+              <td class="has-text-right">
+                {{ item.price | currency: "GTQ":"symbol-narrow":"1.2-2" }}
+              </td>
             </tr>
           </tbody>
         </table>

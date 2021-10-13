@@ -19,6 +19,8 @@ import { ClientCreateComponent } from './clients/client-create/client-create.com
 import { ClientEditComponent } from './clients/client-edit/client-edit.component';
 import { QueryReportComponent } from './reports/query-report/query-report.component';
 import { ReportsModule } from './reports/reports.module';
+import { InvoiceModule } from './invoice/invoice.module';
+import { InvoiceCreateComponent } from './invoice/invoice-create/invoice-create.component';
 
 @NgModule({
   providers: [NotifyService],
@@ -30,6 +32,7 @@ import { ReportsModule } from './reports/reports.module';
     ProductsModule,
     ClientsModule,
     ReportsModule,
+    InvoiceModule,
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
       { path: 'products/create', component: ProductCreateComponent },
@@ -42,6 +45,7 @@ import { ReportsModule } from './reports/reports.module';
       { path: 'clients/edit/:id', component: ClientEditComponent },
       { path: 'clients/delete/:id', component: ClientDeleteComponent },
       { path: 'reports', component: QueryReportComponent },
+      { path: 'invoices', component: InvoiceCreateComponent },
       { path: '', redirectTo: '/', pathMatch: 'full' },
       { path: '**', redirectTo: '/', pathMatch: 'full' },
     ]),

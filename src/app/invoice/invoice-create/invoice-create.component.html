@@ -1,0 +1,279 @@
+<app-client-picker
+  (currentClient)="selectClient($event)"
+  [(visible)]="modalClientIsVisible"
+></app-client-picker>
+
+<app-branch-picker
+  (currentBranch)="selectBranch($event)"
+  [(visible)]="modalBranchIsVisible"
+></app-branch-picker>
+
+<app-product-picker
+  (currentProduct)="selectProduct($event)"
+  [(visible)]="modalProductIsVisible"
+></app-product-picker>
+
+<div class="box columns is-vcentered">
+  <p class="column is-one-third has-text-centered has-text-weight-bold">
+    Total de la factura
+    {{ productList | sum: "total" | currency: "GTQ":"symbol-narrow":"1.2-2" }}
+  </p>
+  <p class="column is-one-third has-text-centered">
+    <button class="button is-success is-rounded" (click)="onSubmit()">
+      Crear Factura
+    </button>
+  </p>
+  <p class="column is-one-third has-text-centered">
+    <button class="button is-danger is-rounded" (click)="clearForm()">
+      Limpiar Factura
+    </button>
+  </p>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <p class="card-header-title">Informacion de la factura</p>
+    <button
+      class="card-header-icon"
+      aria-label="more options"
+      (click)="toggle()"
+    >
+      <span class="icon">
+        <i
+          class="fas"
+          aria-hidden="true"
+          [class.fa-angle-down]="queryIsVisible"
+          [class.fa-angle-up]="!queryIsVisible"
+        ></i>
+      </span>
+    </button>
+  </div>
+  <div class="card-content" [class.is-hidden]="!queryIsVisible">
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label for="orderDate" class="label">Fecha</label>
+      </div>
+      <div class="field-body">
+        <div class="field control is-expanded">
+          <input
+            type="date"
+            name="orderDate"
+            id="orderDate"
+            class="input is-info"
+            required
+            [(ngModel)]="orderDate"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label for="serial" class="label">Serie</label>
+      </div>
+      <div class="field-body">
+        <div class="field control is-expanded">
+          <input
+            type="text"
+            name="serial"
+            id="serial"
+            class="input is-info"
+            [(ngModel)]="serial"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label for="invoiceNumber" class="label">Numero de factura</label>
+      </div>
+      <div class="field-body">
+        <div class="field control is-expanded">
+          <input
+            type="number"
+            name="invoiceNumber"
+            id="invoiceNumber"
+            class="input is-info"
+            [(ngModel)]="invoiceNumber"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label for="client" class="label">Cliente</label>
+      </div>
+      <div class="field-body">
+        <div class="field is-expanded has-addons">
+          <div class="control is-expanded">
+            <fieldset disabled="disabled">
+              <input
+                type="text"
+                name="client"
+                id="client"
+                class="input is-info is-static"
+                value="{{ selectedClient?.name }} - {{ selectedClient?.nit }}"
+              />
+            </fieldset>
+          </div>
+          <div class="control">
+            <button class="button is-info" (click)="openModalClient()">
+              Buscar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label for="branch" class="label">Sucursal</label>
+      </div>
+      <div class="field-body">
+        <div class="field is-expanded has-addons">
+          <div class="control is-expanded">
+            <fieldset disabled="disabled">
+              <input
+                type="text"
+                name="branch"
+                id="branch"
+                class="input is-info is-static"
+                value="{{ selectedBranch?.name }} - {{
+                  selectedBranch?.direction
+                }}"
+              />
+            </fieldset>
+          </div>
+          <div class="control">
+            <button class="button is-info" (click)="openModalBranch()">
+              Buscar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="columns is-centered mt-4">
+  <div class="column is-two-fifths is-narrow">
+    <div class="card">
+      <div class="card-header">
+        <p class="card-header-title">Agregar Producto</p>
+      </div>
+      <div class="card-content">
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="product" class="label">Producto</label>
+          </div>
+          <div class="field-body">
+            <div class="field is-expanded has-addons">
+              <div class="control is-expanded">
+                <fieldset disabled="disabled">
+                  <input
+                    type="text"
+                    name="product"
+                    id="product"
+                    class="input is-info is-static"
+                    value="{{ selectedProduct?.code }} - {{
+                      selectedProduct?.name
+                    }}"
+                  />
+                </fieldset>
+              </div>
+              <div class="control">
+                <button class="button is-info" (click)="openModalProduct()">
+                  Buscar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="ProductQuantity" class="label">Cantidad:</label>
+          </div>
+          <div class="field-body">
+            <div class="field control is-expanded">
+              <input
+                id="ProductQuantity"
+                type="number"
+                class="input is-info"
+                min="1"
+                [(ngModel)]="quantity"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="field has-text-centered">
+          <button
+            id="btnAddProduct"
+            class="button control is-small is-success"
+            (click)="addProduct()"
+          >
+            Agregar Producto
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-three-fifths is-narrow">
+    <div class="box">
+      <div class="table-container">
+        <table
+          class="
+            table
+            is-bordered is-striped is-narrow is-hoverable is-fullwidth
+          "
+        >
+          <thead>
+            <tr class="has-text-centered">
+              <th>Codigo</th>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of productList">
+              <td>{{ item.product?.code }}</td>
+              <td>{{ item.product?.name }}</td>
+              <td class="has-text-right">{{ item.quantity }}</td>
+              <td class="has-text-right">
+                {{
+                  item.product?.price | currency: "GTQ":"symbol-narrow":"1.2-2"
+                }}
+              </td>
+              <td class="has-text-right">
+                {{ item.total | currency: "GTQ":"symbol-narrow":"1.2-2" }}
+              </td>
+              <td class="has-text-centered">
+                <button class="delete" (click)="removeProduct(item)"></button>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td class="has-text-weight-bold">Total</td>
+              <td class="has-text-right">
+                {{
+                  productList
+                    | sum: "total"
+                    | currency: "GTQ":"symbol-narrow":"1.2-2"
+                }}
+              </td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
