@@ -247,10 +247,16 @@
           <td>{{ item.product_Code }}</td>
           <td>{{ item.product_Name }}</td>
           <td>{{ item.product_Description }}</td>
-          <td>{{ item.quantity }}</td>
-          <td>{{ item.price }}</td>
-          <td>{{ item.total }}</td>
-          <td>{{ item.order_Total }}</td>
+          <td class="has-text-right">{{ item.quantity }}</td>
+          <td class="has-text-right">
+            {{ item.price | currency: "GTQ":"symbol-narrow":"1.2-2" }}
+          </td>
+          <td class="has-text-right">
+            {{ item.total | currency: "GTQ":"symbol-narrow":"1.2-2" }}
+          </td>
+          <td class="has-text-right">
+            {{ item.order_Total | currency: "GTQ":"symbol-narrow":"1.2-2" }}
+          </td>
         </tr>
       </tbody>
     </table>

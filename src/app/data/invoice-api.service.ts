@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { IInvoiceDto } from '../common/InvoiceDto';
 import { IQueryReport } from '../common/queryReport';
 import { IResult } from '../common/result';
 
@@ -11,6 +12,13 @@ import { IResult } from '../common/result';
 })
 export class InvoiceApiService {
   constructor(private http: HttpClient) {}
+
+  saveInvoice(invoice: IInvoiceDto): Observable<any> {
+    const url = `${environment.api}/invoices`;
+    return this.http
+      .post(url, invoice)
+      .pipe((data) => data, catchError(this.handleError));
+  }
 
   findInvoices(query: IQueryReport): Observable<IResult[]> {
     const url = `${environment.api}/invoices/getInvoice`;

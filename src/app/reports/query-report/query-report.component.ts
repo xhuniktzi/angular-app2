@@ -4,6 +4,7 @@ import { IClient } from 'src/app/common/client';
 import { IProduct } from 'src/app/common/product';
 import { IResult } from 'src/app/common/result';
 import { InvoiceApiService } from 'src/app/data/invoice-api.service';
+import { NotifyService } from 'src/app/shared/notify.service';
 
 @Component({
   selector: 'app-query-report',
@@ -25,7 +26,10 @@ export class QueryReportComponent implements OnInit {
   selectedBranch: IBranch | undefined;
 
   results: IResult[] = [];
-  constructor(private invoiceApiService: InvoiceApiService) {}
+  constructor(
+    private invoiceApiService: InvoiceApiService,
+    private notifyService: NotifyService
+  ) {}
 
   ngOnInit(): void {
     this.startDate = new Date().toISOString().split('T')[0];
@@ -37,22 +41,32 @@ export class QueryReportComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.invoiceApiService
-      .findInvoices({
-        Start_Date: this.startDate,
-        End_Date: this.endDate,
-        Serial_Number: this.serial,
-        Invoice_Number: this.invoiceNumber,
-        Client_Id: this.selectedClient?.client_Id,
-        Product_Id: this.selectedProduct?.product_Id,
-        Branch_Id: this.selectedBranch?.branch_Id,
-      })
-      .subscribe({
-        next: (results) => {
-          console.log(results);
-          this.results = results;
-        },
+    const startDate: Date = new Date(this.startDate);
+    const endDate: Date = new Date(this.endDate);
+
+    if (startDate > endDate) {
+      this.notifyService.show({
+        type: 'error',
+        msg: 'Debe ingresar una rango de fechas valido',
       });
+    } else {
+      this.invoiceApiService
+        .findInvoices({
+          Start_Date: this.startDate,
+          End_Date: this.endDate,
+          Serial_Number: this.serial,
+          Invoice_Number: this.invoiceNumber,
+          Client_Id: this.selectedClient?.client_Id,
+          Product_Id: this.selectedProduct?.product_Id,
+          Branch_Id: this.selectedBranch?.branch_Id,
+        })
+        .subscribe({
+          next: (results) => {
+            console.log(results);
+            this.results = results;
+          },
+        });
+    }
   }
 
   clearForm(): void {
@@ -63,6 +77,7 @@ export class QueryReportComponent implements OnInit {
     this.selectedClient = undefined;
     this.selectedProduct = undefined;
     this.selectedBranch = undefined;
+    this.results.splice(0, this.results.length);
   }
 
   openModalClient(): void {
